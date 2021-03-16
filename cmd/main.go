@@ -40,5 +40,5 @@ func main() {
 	}()
 
 	log.Printf("starting server on %s\n", *addr)
-	log.Fatal(http.ListenAndServe(*addr, r))
+	log.Println(http.ListenAndServe(*addr, r))
 }
