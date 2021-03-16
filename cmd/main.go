@@ -2,9 +2,9 @@ package main
 
 import (
 	"flag"
+	"github.com/gitalek/key_val_storage/pkg/service"
+	"github.com/gitalek/key_val_storage/pkg/storage"
 	"github.com/gorilla/mux"
-	"key_val_storage/pkg/service"
-	"key_val_storage/pkg/storage"
 	"log"
 	"net/http"
 	"time"
@@ -21,6 +21,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	app, err := service.NewApp(strg)
 	if err != nil {
 		log.Fatal(err)
@@ -33,6 +34,7 @@ func main() {
 	r.HandleFunc("/upsert", app.Upsert).Methods("PUT", "POST")
 
 	quit := app.Backup(*buPath, time.Duration(*buInterval))
+
 	defer func() {
 		quit <- struct{}{}
 	}()

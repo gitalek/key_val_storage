@@ -1,4 +1,4 @@
-module key_val_storage
+module github.com/gitalek/key_val_storage
 
 go 1.15
 
