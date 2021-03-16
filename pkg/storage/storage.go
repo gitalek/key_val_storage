@@ -110,12 +110,11 @@ func loadState(pathToFile string) (dbState, error) {
 	var state dbState
 
 	f, err := os.Open(pathToFile)
-
-	defer f.Close()
-
 	if err != nil {
 		return nil, err
 	}
+
+	defer f.Close()
 
 	err = json.NewDecoder(f).Decode(&(state))
 	if err != nil {

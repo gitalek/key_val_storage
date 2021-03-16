@@ -43,6 +43,7 @@ func (a *App) Get(w http.ResponseWriter, r *http.Request) {
 	result := &Result{}
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", " ")
+
 	vars := mux.Vars(r)
 
 	key, ok := vars["key"]
@@ -74,6 +75,7 @@ func (a *App) List(w http.ResponseWriter, r *http.Request) {
 	result := &Result{}
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", " ")
+
 	val := a.storage.List()
 	result.Data = val
 	enc.Encode(result)
@@ -83,6 +85,7 @@ func (a *App) Delete(w http.ResponseWriter, r *http.Request) {
 	result := &Result{}
 	enc := json.NewEncoder(w)
 	enc.SetIndent("", " ")
+
 	vars := mux.Vars(r)
 
 	key, ok := vars["key"]
@@ -179,13 +182,13 @@ func saveToFile(pathToFile string, state map[string]string) {
 	}
 
 	f, err := os.Create(pathToFile)
-	defer f.Close()
-
 	if err != nil {
 		log.Println(err)
 
 		return
 	}
+
+	defer f.Close()
 
 	enc := json.NewEncoder(f)
 	enc.SetIndent("", " ")

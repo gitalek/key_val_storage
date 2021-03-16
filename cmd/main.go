@@ -27,11 +27,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+	get := service.HeaderMW(app.Get)
+	list := service.HeaderMW(app.List)
+	del := service.HeaderMW(app.Delete)
+	upsert := service.HeaderMW(app.Upsert)
+
 	r := mux.NewRouter()
-	r.HandleFunc("/get/{key}", app.Get).Methods("GET")
-	r.HandleFunc("/list", app.List).Methods("GET")
-	r.HandleFunc("/delete/{key}", app.Delete).Methods("DELETE", "POST")
-	r.HandleFunc("/upsert", app.Upsert).Methods("PUT", "POST")
+	r.HandleFunc("/get/{key}", get).Methods("GET")
+	r.HandleFunc("/list", list).Methods("GET")
+	r.HandleFunc("/delete/{key}", del).Methods("DELETE", "POST")
+	r.HandleFunc("/upsert", upsert).Methods("PUT", "POST")
 
 	quit := app.Backup(*buPath, time.Duration(*buInterval))
 
