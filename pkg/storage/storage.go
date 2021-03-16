@@ -1,4 +1,4 @@
-package main
+package storage
 
 import (
 	"encoding/json"
@@ -82,10 +82,15 @@ func (s *Storage) Upsert(items map[string]string) {
 	}
 }
 
+// Backup method returns copy of storage
 func (s *Storage) Backup() map[string]string {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
-	return s.storage
+	bu := make(map[string]string, len(s.storage))
+	for k, v := range s.storage {
+		bu[k] = v
+	}
+	return bu
 }
 
 func loadState(pathToFile string) (dbState, error) {

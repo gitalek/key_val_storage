@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/gorilla/mux"
+	"key_val_storage/pkg/service"
+	"key_val_storage/pkg/storage"
 	"log"
 	"net/http"
 	"time"
@@ -15,11 +17,11 @@ func main() {
 	emptyInitStateAllowed := flag.Bool("allowEmptyDBOnStart", true, "allow empty db if backup file didn't find")
 	flag.Parse()
 
-	storage, err := NewStorageFromFile(*buPath, *emptyInitStateAllowed)
+	strg, err := storage.NewStorageFromFile(*buPath, *emptyInitStateAllowed)
 	if err != nil {
 		log.Fatal(err)
 	}
-	app, err := NewApp(storage)
+	app, err := service.NewApp(strg)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,8 +1,9 @@
-package main
+package service
 
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
+	storage2 "key_val_storage/pkg/storage"
 	"log"
 	"net/http"
 	"net/url"
@@ -26,11 +27,11 @@ type Result struct {
 }
 
 type App struct {
-	storage *Storage
+	storage *storage2.Storage
 }
 
 // NewApp is an App constructor.
-func NewApp(s *Storage) (*App, error) {
+func NewApp(s *storage2.Storage) (*App, error) {
 	if s == nil {
 		return nil, ErrNilStorageProvided
 
