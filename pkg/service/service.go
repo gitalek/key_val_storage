@@ -2,13 +2,14 @@ package service
 
 import (
 	"encoding/json"
-	"github.com/gitalek/key_val_storage/pkg/storage"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
 	"time"
+
+	"github.com/gitalek/key_val_storage/pkg/storage"
+	"github.com/gorilla/mux"
 )
 
 const (

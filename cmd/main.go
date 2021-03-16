@@ -2,12 +2,13 @@ package main
 
 import (
 	"flag"
-	"github.com/gitalek/key_val_storage/pkg/service"
-	"github.com/gitalek/key_val_storage/pkg/storage"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/gitalek/key_val_storage/pkg/service"
+	"github.com/gitalek/key_val_storage/pkg/storage"
+	"github.com/gorilla/mux"
 )
 
 func main() {
