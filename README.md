@@ -19,7 +19,7 @@ Usage
 For example:
 
 ```bash
-$ go run ./cmd -file=./db.json -addr=:5550 -buInterval=1000 -allowEmptyDBOnstart=false
+$ go run ./cmd -file=./db.json -addr=:5550 -buInterval=1000 -allowEmptyDBOnStart=false
 ```
 
 
